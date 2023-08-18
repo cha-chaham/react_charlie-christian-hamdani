@@ -23,3 +23,14 @@ Melakukan merge pull request dari branch main
 
 branch berhasil di merge
 ![Gambar Latihan 7](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/21d5c1ec7e9b77d3f47eab2bd3fbfb4e9b34def6/02_Version%20Control_and_Branch_Managements_(Git)/screenshots/02_Version%20Control%20and%20Branch%20Managements%20Git_Latihan%2007.png "Gambar Latihan 7")
+
+## Eksplorasi dengan worklflow
+Melakukan percobaan workflow Git Flow
+### Menampilkan Network Graph pada Github
+(Gambar Network Graph)
+
+### Melakukan Code Review pada Github sebelum Merge Pull Requests
+(Gambar Code Review)
+
+### Melakukan Resolve Conflict
+(Gambar Code Conflict)
