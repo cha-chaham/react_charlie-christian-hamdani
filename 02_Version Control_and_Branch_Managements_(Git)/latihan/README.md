@@ -27,10 +27,10 @@ branch berhasil di merge
 ## Eksplorasi dengan worklflow
 Melakukan percobaan workflow Git Flow
 ### Menampilkan Network Graph pada Github
-(Gambar Network Graph)
+![Gambar Latihan 8](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/986e29931441eb773cc96717c206e04fe162e854/02_Version%20Control_and_Branch_Managements_(Git)/screenshots/02_Version%20Control%20and%20Branch%20Managements%20Git_Latihan%2010.png "Gambar Latihan 8")
 
 ### Melakukan Code Review pada Github sebelum Merge Pull Requests
-(Gambar Code Review)
+![Gambar Latihan 9](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/986e29931441eb773cc96717c206e04fe162e854/02_Version%20Control_and_Branch_Managements_(Git)/screenshots/02_Version%20Control%20and%20Branch%20Managements%20Git_Latihan%2008.png "Gambar Latihan 9")
 
 ### Melakukan Resolve Conflict
-(Gambar Code Conflict)
+![Gambar Latihan 10](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/986e29931441eb773cc96717c206e04fe162e854/02_Version%20Control_and_Branch_Managements_(Git)/screenshots/02_Version%20Control%20and%20Branch%20Managements%20Git_Latihan%2009.png "Gambar Latihan 10")
