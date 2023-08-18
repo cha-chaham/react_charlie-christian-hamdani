@@ -31,13 +31,13 @@ Workflow Collaboration adalah cara yang dilakukan dengan tidak menyimpan semua p
 
 beberapa command yang digunakan pad GIT
 
-`git log --oneline` digunakan untuk menampilkan semua commit yang sudah dilakukan
-`git checkout "kode" ` digunakan untuk pindah ke titik commit tertentu
-`git pull origin` digunakan untuk mengambil versi asli dari repository GitHub
-`git push origin` digunakan untuk mengirimkan file local ke repository GitHub
-`git branch --list` digunakan untuk mengecek branch apa saja yang ada
-`git branch <nama_branch>` digunakan untuk membuat branch baru
-`git merge <nama_branch>` digunakan untuk melakukan merge atau memasukkan perubahan pada branch. ketentuannya adalah untuk melakukan merge, harus pindah/checkout ke branch tujuan merge
+> `git log --oneline` digunakan untuk menampilkan semua commit yang sudah dilakukan
+> `git checkout "kode" ` digunakan untuk pindah ke titik commit tertentu
+> `git pull origin` digunakan untuk mengambil versi asli dari repository GitHub
+> `git push origin` digunakan untuk mengirimkan file local ke repository GitHub
+> `git branch --list` digunakan untuk mengecek branch apa saja yang ada
+> `git branch <nama_branch>` digunakan untuk membuat branch baru
+> `git merge <nama_branch>` digunakan untuk melakukan merge atau memasukkan perubahan pada branch. ketentuannya adalah untuk melakukan merge, harus pindah/checkout ke branch tujuan merge
 
 Conflict terjadi ketika perubahan di beda branch terjadi di line yang sama
 
