@@ -10,3 +10,9 @@ Berikut saya lampirkan tugas latihan saya beserta gambarnya
 
 ## Pada setiap folder akan berisikan sub folder lagi
 ![Gambar Latihan 1](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/8991713fbfafd9f9ecc99ee191b350240dc30b09/02_Version%20Control_and_Branch_Managements_(Git)/screenshots/02_Version%20Control%20and%20Branch%20Managements%20Git_Latihan%2003.png "Gambar Latihan 3")
+
+## Membuat sebuah branch baru pada github repository ini
+(link gambar disini)
+
+## Melakukan pull request untuk melakukan merger dari branch yang baru ke main
+(link gambar disini)
