@@ -1,4 +1,4 @@
-# Summary 03_Figma Introduction Interface Dimension
+# (03) Figma Introduction Interface Dimension
 
 Figma adalah alat yang dgunakan untuk pixel editing berbasis web dan dapat digunakan untuk membuat design UI untuk smartphone ataupun desktop
 

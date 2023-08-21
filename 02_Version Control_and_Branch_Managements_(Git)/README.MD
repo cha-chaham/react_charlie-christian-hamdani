@@ -1,4 +1,4 @@
-# Summary Version Control and Branch Managements (Git)
+# (02) Version Control and Branch Managements (Git)
 
 Versioning adalah dilakukan untuk mengatur versi dari source program
 
