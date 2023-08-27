@@ -1,46 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create Product</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Create Product</h1>
     <h2>Detail Product</h2>
 
     <form action="">
-        <div class="productName">
-            <p for="productName">Product Name : </p>
-            <input required type="text" name="productName" id="">
-        </div>
-        <div class="productCategory">
-            <p for="productCategory">Product Category : </p>
-            <select name="productCategory" id="">
-                <option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-            </select>
-        </div>
-        <div class="productFresheness">
-            <p>Product Freshness</p>
-            <input required type="radio" name="productFresheness" id="" name="productFresheness" value="Brand New">
-            <label for="BrandNew">Brand New</label> <br>
-            <input required type="radio" name="productFresheness" id="" name="productFresheness" value="Second Hank">
-            <label for="productFresheness">Second Hank</label> <br>
-            <input required type="radio" name="productFresheness" id="" name="productFresheness" value="Refurbished">
-            <label for="Refurbished">Refurbished</label>
-        </div>
-        <div class="imageOfProduct">
-            <p>Image of Product <input required type="file" name="imageOfProduct" id=""></p>
-        </div>
-        <div class="additionalDescription">
-            <p>Additional Description: </p>
-            <textarea name="additionalDescription" id="" cols="50" rows="10"></textarea>
-        </div>
-        <div class="productPrice">
-            <p>Product Price :</p>
-            <input required type="number" name="productPrice" id="" placeholder="$100">
-        </div>
-        <button type="submit">Submit</button>
+      <div class="productName">
+        <p for="productName">Product Name :</p>
+        <input
+          required
+          type="text"
+          name="productName"
+          id=""
+          minlength="6"
+          maxlength="50"
+        />
+      </div>
+      <div class="productCategory">
+        <p for="productCategory">Product Category :</p>
+        <select required name="productCategory" id="">
+          <option value="">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </option>
+          <option value="">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </option>
+        </select>
+      </div>
+      <div class="productFresheness">
+        <p>Product Freshness</p>
+        <input
+          required
+          type="radio"
+          name="productFresheness"
+          id=""
+          name="productFresheness"
+          value="Brand New"
+        />
+        <label for="BrandNew">Brand New</label> <br />
+        <input
+          required
+          type="radio"
+          name="productFresheness"
+          id=""
+          name="productFresheness"
+          value="Second Hank"
+        />
+        <label for="productFresheness">Second Hank</label> <br />
+        <input
+          required
+          type="radio"
+          name="productFresheness"
+          id=""
+          name="productFresheness"
+          value="Refurbished"
+        />
+        <label for="Refurbished">Refurbished</label>
+      </div>
+      <div class="imageOfProduct">
+        <p>
+          Image of Product
+          <input required type="file" name="imageOfProduct" id="" />
+        </p>
+      </div>
+      <div class="additionalDescription">
+        <p>Additional Description:</p>
+        <textarea
+          name="additionalDescription"
+          id=""
+          cols="50"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="productPrice">
+        <p>Product Price :</p>
+        <input
+          required
+          type="number"
+          name="productPrice"
+          id=""
+          placeholder="$100"
+        />
+      </div>
+      <button type="submit">Submit</button>
     </form>
-</body>
+  </body>
 </html>
