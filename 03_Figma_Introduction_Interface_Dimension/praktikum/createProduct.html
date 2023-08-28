@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Landing Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Landing Page" />
+    <link rel="stylesheet" href="assets/css/landingPage.css" />
+    <link rel="stylesheet" href="assets/css/landingPage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost&family=Open+Sans&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Ganti warna latar belakang dan teks pada tombol "Choose File" */
+      .custom-file-input::-webkit-file-upload-button {
+        background-color: #3498db;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand ms-3" href="#"><b>Simple Header</b></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item ml-2 p-0">
+                <a
+                  class="nav-link btn btn-primary text-white bg-primary p-3 ps-4 pe-4 fw-medium"
+                  aria-current="page"
+                  href="#"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item ml-2 p-0">
+                <a
+                  class="nav-link btn btn-primary active p-3 ps-4 pe-4 fw-medium bg-transparent text-primary"
+                  href="#"
+                  >Features</a
+                >
+              </li>
+              <li class="nav-item ml-2 p-0">
+                <a
+                  class="nav-link btn btn-primary active p-3 ps-4 pe-4 fw-medium bg-transparent text-primary"
+                  href="#"
+                  >Pricing</a
+                >
+              </li>
+              <li class="nav-item ml-2 p-0">
+                <a
+                  class="nav-link btn btn-primary active p-3 ps-4 pe-4 fw-medium bg-transparent text-primary"
+                  href="#"
+                  >FAQs</a
+                >
+              </li>
+              <li class="nav-item ml-2 p-0">
+                <a
+                  class="nav-link btn btn-primary active p-3 ps-4 pe-4 fw-medium bg-transparent text-primary"
+                  href="#"
+                  >About</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container p-5">
+      <div class="row mt-5 justify-content-center">
+        <div class="col-8 text-center">
+          <img src="assets/images/bootstrap-logo.svg" alt="" width="100em" />
+        </div>
+      </div>
+      <div class="row mt-4 justify-content-center text-center">
+        <div class="col-8">
+          <h4>Create Product</h4>
+          <p>
+            Below is an example form built entirely with Bootstrap’s form
+            controls. Each required form group has a validation state that can
+            be triggered by attempting to submit the form without completing it.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="row mt-5 justify-content-center">
+        <div class="col-md-6">
+          <h5 class="text-start">Detail Product</h5>
+
+          <div class="alertContainer"></div>
+          <form action="" class="needs-validation" novalidate>
+            <!-- Product Name -->
+            <div class="mb-3 col-sm-6">
+              <label for="exampleFormControlInput1" class="form-label"
+                >Product Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="productName"
+                minlength="6"
+                maxlength="50"
+                required
+              />
+              <div class="invalid-feedback">
+                Please provide a valid product name (min 6 Characters).
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Product Category -->
+            <div class="mb-3 col-sm-4">
+              <label for="exampleFormControlInput5" class="form-label"
+                >Product Category</label
+              >
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="productCategory"
+                required
+              >
+                <option selected disabled value="">Choose...</option>
+                <option value="1">...</option>
+                <option value="2">...</option>
+                <option value="3">...</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a product category.
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Image of Product -->
+            <div class="mb-3 col-md-6">
+              <label for="exampleFormControlInput2" class="form-label"
+                >Image of Product</label
+              >
+              <div
+                class="btn btn-info mb-2"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-info"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+                  />
+                </svg>
+              </div>
+
+              <input
+                class="form-control border-primary"
+                type="file"
+                id="imageOfProduct"
+                required
+              />
+              <div class="invalid-feedback">
+                Please Upload an Image of Product
+              </div>
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+
+            <!-- Product Freshness -->
+            <div class="mb-3 col-md-6">
+              <label for="exampleFormControlInput3" class="form-label"
+                >Product Freshness</label
+              >
+
+              <div class="form-control">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="productFreshness"
+                    id="productFreshness1"
+                    required
+                  />
+                  <label class="form-check-label" for="productFreshness1">
+                    Brand New
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="productFreshness"
+                    id="productFreshness2"
+                    required
+                  />
+                  <label class="form-check-label" for="productFreshness1">
+                    Second Hand
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="productFreshness"
+                    id="productFreshness3"
+                    required
+                  />
+                  <label class="form-check-label" for="productFreshness1">
+                    Refurbished
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Description -->
+            <div class="mb-3 col">
+              <label for="floatingTextarea2">Additional Description</label>
+              <div class="form-floating">
+                <textarea
+                  class="form-control"
+                  id="additionalDescription"
+                  style="height: 100px"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- Product Price -->
+            <div class="mb-3 col">
+              <label for="exampleFormControlInput4" class="form-label"
+                >Product Price</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="exampleFormControlInput2"
+                placeholder="$ 1"
+                required
+              />
+            </div>
+
+            <!-- Button Submit -->
+            <div class="col-12 mb-3 mt-5 btn btn-primary">
+              <button type="submit" class="btn text-white">Submit</button>
+            </div>
+          </form>
+
+          <!-- Exlorasi Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    Informasi Gambar
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">Gambar Berukuran Maksimal 2MB</div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    (function () {
+      "use strict";
+      var forms = document.querySelectorAll(".needs-validation");
+      Array.from(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+              showErrorAlert("Periksa Kembali Form");
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    })();
+
+    function showErrorAlert(message) {
+      var alertContainer = document.querySelector(".alertContainer");
+      if (alertContainer) {
+        var alertHTML =
+          '<div class="alert alert-danger fade show" role="alert">';
+        alertHTML += "<strong>Error!</strong> " + message;
+        alertHTML += "</div>";
+        alertContainer.innerHTML = alertHTML;
+      }
+    }
+  </script>
+</html>
