@@ -1,3 +1,6 @@
+let arrayData = [];
+const table = document.querySelector(".table");
+
 let inputProductName = document.getElementById("productName");
 let messageProductName = document.getElementById("errorProductName");
 
@@ -62,6 +65,7 @@ eventButtonSimpan.disabled = true;
 let inputProductFreshness = document.getElementsByName("productFreshness");
 let messageProductFreshness = document.getElementById("errorProductFreshness");
 let inputProductFreshnessStatus = false;
+let selectedProductFreshness = "";
 
 console.log(inputProductFreshnessStatus);
 
@@ -77,6 +81,8 @@ function validationProductFreshness() {
     if (inputProductFreshness[i].checked) {
       inputProductFreshnessStatus = true;
       messageProductFreshness.textContent = "";
+      console.log(inputProductFreshness[i].value);
+      selectedProductFreshness = inputProductFreshness[i].value;
       break;
     } else {
       messageProductFreshness.textContent = "Pilih Salah Satu";
@@ -120,6 +126,8 @@ function validationProductImage() {
   checkButton();
 }
 
+let inputProductDescription = document.getElementById("additionalDescription");
+
 function simpanData() {
   if (
     inputProductName.value == "" &&
@@ -134,6 +142,7 @@ function simpanData() {
     validationProductFreshness();
     validationProductCategory();
     validationProductImage();
+    validationProductPrice();
   } else if (inputProductName.value == "") {
     alert("Mohon Masukkan Nama Produk Dengan Benar");
     validationProductName();
@@ -150,9 +159,98 @@ function simpanData() {
     alert("Mohon Masukkan Harga Produk Dengan Benar");
     validationProductPrice();
   } else {
-    alert("Data Disimpan");
+    // alert(
+    //   "Data Disimpan \n" +
+    //     "Product Name : " +
+    //     inputProductName.value +
+    //     "\n" +
+    //     "Product Price : " +
+    //     inputProductPrice.value +
+    //     "\n" +
+    //     "Product Freshness : " +
+    //     selectedProductFreshness +
+    //     "\n" +
+    //     "Product Category : " +
+    //     inputProductCategory.value +
+    //     "\n" +
+    //     "Deskripsi Produk : " +
+    //     inputProductDescription.value +
+    //     "\n"
+    // );
+
+    let object = {
+      name: inputProductName.value,
+      price: inputProductPrice.value,
+      freshness: selectedProductFreshness,
+      category: inputProductCategory.value,
+      description: inputProductDescription.value,
+    };
+    arrayData.push(object);
+    console.log(arrayData);
+
+    while (table.rows.length > 1) {
+      table.deleteRow(1);
+    }
+    checkData();
+
+    inputProductName.value = "";
+    inputProductPrice.value == 0;
+    inputProductFreshnessStatus = false;
+    selectedProductFreshness = "";
+    for (let i = 0; i < inputProductFreshness.length; i++) {
+      inputProductFreshness[i].checked = false;
+    }
+    inputProductCategory.value = "";
+    inputProductImage.value = "";
   }
   checkButton();
+}
+
+function checkData() {
+  arrayData.forEach((data, index) => {
+    const row = table.insertRow();
+    const cell1 = row.insertCell(0);
+    const cell2 = row.insertCell(1);
+    const cell3 = row.insertCell(2);
+    const cell4 = row.insertCell(3);
+    const cell5 = row.insertCell(4);
+    const cell6 = row.insertCell(5);
+    const cell7 = row.insertCell(6);
+
+    cell1.innerHTML = index + 1;
+    cell2.innerHTML = data.name;
+    cell3.innerHTML = data.category;
+    cell4.innerHTML = "";
+    cell5.innerHTML = data.freshness;
+    cell6.innerHTML = "Rp. " + data.price;
+    cell7.innerHTML = data.description;
+  });
+}
+
+function deleteData() {
+  arrayData.pop();
+  while (table.rows.length > 1) {
+    table.deleteRow(1);
+  }
+  checkData();
+  console.log("tombol ditekan");
+}
+
+function searchData() {
+  const keyword = document.getElementById("searchProduct").value;
+
+  // Melakukan pencarian dengan menggunakan metode find
+  const result = arrayData.find((product) => product.name === keyword);
+
+  // Menampilkan hasil pencarian dalam alert jika ada hasil yang cocok
+  if (result) {
+    const message = `Nama Produk: ${result.name}\nHarga: Rp. ${result.price}\nKategori: ${result.category}\nProduct Freshness: ${result.freshness}\nDeskripsi: ${result.description}`;
+    alert(message);
+  } else if (keyword == "") {
+    alert("Masukan Nama Produk dengan Benar");
+  } else {
+    alert("Tidak ada produk dengan nama yang persis sama.");
+  }
 }
 
 function specialCharacterTest() {

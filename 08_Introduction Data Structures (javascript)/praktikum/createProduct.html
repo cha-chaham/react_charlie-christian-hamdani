@@ -314,6 +314,59 @@
           </div>
         </div>
       </div>
+
+      <div class="col-md-12 mt-3">
+        <h3 class="text-center">List Product</h3>
+
+        <div class="listTable">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Category</th>
+                <th scope="col">Image of Product</th>
+                <th scope="col">Product Freshness</th>
+                <th scope="col">Product Price (Rp)</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="row">
+            <div class="col-6">
+              <button
+                type="button"
+                class="btn btn-danger"
+                onclick="deleteData()"
+              >
+                Delete
+              </button>
+            </div>
+            <div class="col-6">
+              <div class="row">
+                <div class="col-8">
+                  <input
+                    type="text"
+                    name="searchProduct"
+                    class="form-control col-md-4"
+                    id="searchProduct"
+                    placeholder="Masukkan Nama Produk"
+                  />
+                </div>
+                <div class="col-4">
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    onclick="searchData()"
+                  >
+                    Cari
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
   <script
