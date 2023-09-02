@@ -194,7 +194,7 @@ function simpanData() {
     checkData();
 
     inputProductName.value = "";
-    inputProductPrice.value == 0;
+    inputProductPrice.value = 0;
     inputProductFreshnessStatus = false;
     selectedProductFreshness = "";
     for (let i = 0; i < inputProductFreshness.length; i++) {
@@ -202,6 +202,7 @@ function simpanData() {
     }
     inputProductCategory.value = "";
     inputProductImage.value = "";
+    inputProductDescription.value = "";
   }
   checkButton();
 }
