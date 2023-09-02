@@ -1,0 +1,7 @@
+# (07) Javascript Refreshment
+
+1. Dalam Javascript penggunaan `var` dihindari untuk emncegah penggunaan variabel yang undefined. Sehingga digunakan `let` dan `const`. `let` digunakan jika nilai dari variabel tersebut dapat diubah, sedangkan `const` digunakan ketika nilai dari variabel tersebut tidak dapat diubah. Sehingga berlaku ketika pendeklarasian nilai dari variabel `let` dapat dikosongkan terlebih dahulus, sedangkan niali dari variabel `const` harus diberikan saat pendeklarasian.
+
+2. Function dalam Javascript digunakan untuk membuat segmentasi dalam codingan dan mempermudah pengerjaan coding, karena fungsi ini dapat dipanggil berulang kali sehingga tidak harus membuat segala sesuatunya kembali dari awal. Dalam javascript juga terdapat fungsi bawaan yang disebut dengan method. diantaranya adalah `Concat()` (Untuk menggabungkan array), `Slice()` untuk memilih bagian array dan membuatnya menjadi array baru dan method lainnya yang berguna untuk membuat program menjadi lebih sederhana.
+
+3. Dalam Javascript juga dapat bekerja secara asynchronus. synchronus adalah cara javascript untuk mengeksekusi atau memberikan output yang bukan berdasarkan urutan kode program, melainkan berdasarkan waktu pemrosesannya. Dalam Async ini juga dikenal istilah Await yang digunakan untuk menunda proses selanjutnya hingga sebuah promise selesai. Promise sendiri adalah objek yang mempresentasikan keberhasilan atau kegagalan dari sebuah event asynchronus.
