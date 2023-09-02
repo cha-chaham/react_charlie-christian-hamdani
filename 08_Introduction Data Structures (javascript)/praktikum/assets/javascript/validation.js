@@ -62,7 +62,6 @@ eventButtonSimpan.disabled = true;
 let inputProductFreshness = document.getElementsByName("productFreshness");
 let messageProductFreshness = document.getElementById("errorProductFreshness");
 let inputProductFreshnessStatus = false;
-let selectedProductFreshness = "";
 
 console.log(inputProductFreshnessStatus);
 
@@ -78,8 +77,6 @@ function validationProductFreshness() {
     if (inputProductFreshness[i].checked) {
       inputProductFreshnessStatus = true;
       messageProductFreshness.textContent = "";
-      console.log(inputProductFreshness[i].value);
-      selectedProductFreshness = inputProductFreshness[i].value;
       break;
     } else {
       messageProductFreshness.textContent = "Pilih Salah Satu";
@@ -123,8 +120,6 @@ function validationProductImage() {
   checkButton();
 }
 
-let inputProductDescription = document.getElementById("additionalDescription");
-
 function simpanData() {
   if (
     inputProductName.value == "" &&
@@ -139,7 +134,6 @@ function simpanData() {
     validationProductFreshness();
     validationProductCategory();
     validationProductImage();
-    validationProductPrice();
   } else if (inputProductName.value == "") {
     alert("Mohon Masukkan Nama Produk Dengan Benar");
     validationProductName();
@@ -156,27 +150,7 @@ function simpanData() {
     alert("Mohon Masukkan Harga Produk Dengan Benar");
     validationProductPrice();
   } else {
-    alert(
-      "Data Disimpan \n" +
-        "Product Name : " +
-        inputProductName.value +
-        "\n" +
-        "Product Price : " +
-        inputProductPrice.value +
-        "\n" +
-        "Product Freshness : " +
-        selectedProductFreshness +
-        "\n" +
-        "Product Category : " +
-        inputProductCategory.value +
-        "\n" +
-        "Product Name : " +
-        inputProductName.value +
-        "\n" +
-        "Deskripsi Produk : " +
-        inputProductDescription.value +
-        "\n"
-    );
+    alert("Data Disimpan");
   }
   checkButton();
 }
