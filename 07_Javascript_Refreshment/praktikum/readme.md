@@ -19,3 +19,7 @@
 ## 5. Tampilan Validasi Tombol Submit Disabled Ketika Ada Inputan Yang Masih Kosong
 
 ![Gambar Tombol Disabled](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/9a9fb75e87a5c9eb7cb9ceb32b4241bf7ad4c3a8/07_Javascript_Refreshment/screenshots/07_Javascript%20Refreshment_Disabled%20Tombol_gif.gif "Gambar Tombol Disabled")
+
+## 6. Tampilan Alert Semua Data Berhasil Diinput
+
+![Gambar Alert Berhasil](https://github.com/cha-chaham/react_charlie-christian-hamdani/blob/d5ba66e63056d168e2d8ad53e2b6daf1ce43c573/07_Javascript_Refreshment/screenshots/07_Javascript%20Refreshment_Tampilan%20Alert%20Semua%20Data_gif.gif "Gambar Alert Berhasil")
