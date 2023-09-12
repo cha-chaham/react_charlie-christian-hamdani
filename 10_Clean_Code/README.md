@@ -1,4 +1,4 @@
-# (09) Clean Code
+# (10) Clean Code
 
 1.  Sebuah code dikatakan clean code adalah code yang penamaan variabel ataupun fungsi didalamnnya yang mudah dipahami, dieja, dicari serta singkat namun dapat mendeskripsikan konteksnya. code yang clean juga adalah code yang konsisten, tidak ada penambahan konteks yang tidak perlu serta adanya komentar yang membantu.
 
