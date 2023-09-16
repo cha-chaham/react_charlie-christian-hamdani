@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charlie Christian Hamdani - Code Competance 1</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <style>
+      .navbar-toggler-icon svg {
+        fill: white;
+      }
+    </style>
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="assets/images/HSI-Logo-Red.png"
+    />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-expand-sm navbar-expand-md ps-3 pe-3"
+      id="navbar"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="#">
+          <img src="assets/images/HSI-logo.png" alt="Bootstrap" width="60" />
+          <span class="small-screen-text">HSI</span>
+          <span class="large-screen-text">Harmoni Suara Indonesia</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              fill="white"
+              class="bi bi-list"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+              /></svg
+          ></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul
+            class="navbar-nav ms-auto mb-2 mb-lg-0 column-gap-lg-4 column-gap-md-0"
+          >
+            <li class="nav-item">
+              <a class="nav-link text-white" aria-current="page" href="#"
+                >Beranda</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Konser</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Pendaftaran</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="hero-section" id="header">
+      <div class="container main text-white">
+        <div class="row">
+          <div class="col-12" id="hero-atas">
+            <img
+              class="rounded-5 shadow-lg"
+              src="https://source.unsplash.com/1600x900/?choir"
+              alt=""
+            />
+          </div>
+          <div class="col-12 flex-column" id="hero-bawah">
+            <h1>
+              Suara Harmoni Indonesia: Menyatukan Melodi, Menginspirasi Dunia.
+            </h1>
+            <p>
+              Bergabunglah dengan kami di Suara Harmoni Indonesia dan
+              bersama-sama kita ciptakan harmoni vokal yang menginspirasi dunia!
+            </p>
+            <button id="btnCTA">
+              <span>Bergabunglah Bersama Kami</span>
+              <svg
+                viewBox="-5 -5 110 110"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M0,0 C0,0 100,0 100,0 C100,0 100,100 100,100 C100,100 0,100 0,100 C0,100 0,0 0,0"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container p-5 mb-3">
+      <div class="row">
+        <div
+          class="col-12 col-md-6 col-lg-6 d-flex flex-column justify-content-center"
+        >
+          <h1 class="fw-bold" id="txtContact">
+            <span>Hubungi Kami</span>
+          </h1>
+          <p id="txtDescContact">
+            Bersama kita menginspirasi dunia dengan lantunan melodi dan suara
+          </p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+          <form action="">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nama</label>
+              <input
+                required
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="John Doe"
+              />
+              <div id="errorMessageName" style="color: red"></div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                required
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="name@example.com"
+              />
+              <div id="errorMessageEmail" style="color: red"></div>
+            </div>
+            <div class="mb-3">
+              <label for="phoneNumber" class="form-label">Nomor Telepon</label>
+              <input
+                required
+                type="number"
+                class="form-control"
+                id="phoneNumber"
+                placeholder="08xxxxxxxx"
+              />
+              <div id="errorMessagePhoneNumber" style="color: red"></div>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Pesan</label>
+              <textarea class="form-control" id="message" rows="5"></textarea>
+            </div>
+            <div class="col-auto">
+              <button
+                id="btnSend"
+                type="button"
+                onclick="submitData()"
+                class="btn mb-3 ps-4 pe-4 pt-2 pb-2"
+              >
+                Kirim Pesan
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="" id="footer">
+      <div class="row p-4">
+        <div class="col-xs-12 col-md-12 col-lg-6 mb-3">
+          <img src="assets/images/HSI-logo.png" alt="" id="footerLogo" />
+          <h5 class="text-white fw-medium m-0">Harmoni Suara Indonesia</h5>
+          <p class="text-white m-0">
+            "Harmoni Suara Indonesia" adalah grup paduan suara yang memadukan
+            keindahan vokal dengan nuansa tradisional Indonesia. Mereka
+            menyebarkan kebahagiaan melalui penampilan modern yang unik,
+            berpartisipasi dalam kegiatan sosial, dan membangun komunitas yang
+            mendukung satu sama lain. Bergabung dengan mereka adalah kesempatan
+            untuk mengeksplorasi kekayaan musik Indonesia sambil menjadi bagian
+            dari keluarga musik yang bersemangat.
+          </p>
+        </div>
+        <div
+          class="col-xs-12 col-md-12 col-lg-3 mb-3 pt-2 d-flex flex-column"
+          id="founder"
+        >
+          <h5 class="fw-medium m-0">
+            <i class="bi bi-person-fill"></i> Pendiri Kami
+          </h5>
+          <p>Charlie Christian Hamdani</p>
+          <p>
+            Telp. (0451)-123-456 <br />
+            Phone (+62)851-6298-0089
+          </p>
+          <div id="socialsMedia">
+            <a
+              href="https://www.facebook.com/Cha.chrisham"
+              target="_blank"
+              class="btn p-1 rounded-5"
+              ><i class="bi bi-facebook"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/cha_chaham/"
+              target="_blank"
+              class="btn p-1 rounded-5"
+              ><i class="bi bi-instagram"></i
+            ></a>
+            <a
+              href="https://twitter.com/cha_chaham"
+              target="_blank"
+              class="btn p-1 rounded-5"
+              ><i class="bi bi-twitter"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/charlie-christian-4943751b1/"
+              target="_blank"
+              class="btn p-1 rounded-5"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a
+              href="https://github.com/cha-chaham/"
+              target="_blank"
+              class="btn p-1 rounded-5"
+              ><i class="bi bi-github"></i
+            ></a>
+            <!-- Sekretariat -->
+            <h5 class="fw-medium mt-4 m-0">
+              <i class="bi bi-geo-alt-fill"></i> Temukan Kami
+            </h5>
+            <p>
+              Sekretariat Harmoni Suara Indonesia <br />
+              Jl. Harmoni, No. 123 Kec. Tatanga, Kota Palu, Sulawesi Tengah
+            </p>
+            <p>
+              Telp. (0451)-123-456 <br />
+              Phone (+62)851-6298-0089
+            </p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-3 mb-3 pt-2" id="content">
+          <h5>Content</h5>
+          <p class="mt-3">
+            <a href="#" class="text-white text-decoration-none">Beranda</a>
+          </p>
+          <p class="mt-3">
+            <a href="#" class="text-white text-decoration-none">Blog</a>
+          </p>
+          <p class="mt-3">
+            <a href="#" class="text-white text-decoration-none"
+              >Jadwal Konser</a
+            >
+          </p>
+          <p class="mt-3">
+            <a href="#" class="text-white text-decoration-none"
+              >Pendaftaran Anggota</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"
+  ></script>
+  <script src="assets/js/navbar.js"></script>
+  <script src="assets/js/data.js"></script>
+</html>
