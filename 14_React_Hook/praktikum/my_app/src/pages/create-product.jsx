@@ -246,8 +246,6 @@ export default function CreateProduct1() {
     console.log("submit");
     event.preventDefault();
     if (isEdit) {
-      // Lakukan apa pun yang diperlukan saat mengklik "Submit" dalam mode edit
-      // Di sini Anda bisa memperbarui produk yang sudah ada jika perlu
     } else if (validateForm()) {
       const product = {
         id: products.length + 1,
