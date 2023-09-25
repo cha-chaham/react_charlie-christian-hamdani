@@ -30,7 +30,6 @@ export default function Table(props) {
           <td>{data.productDescription}</td>
           <td className="text-center">
             <button
-              disabled
               onClick={() => editProduct(data)}
               className="bg-orange-500 text-white me-2 mb-1 px-3 py-2 rounded-md hover:bg-orange-600 hover:ease-in transition"
             >

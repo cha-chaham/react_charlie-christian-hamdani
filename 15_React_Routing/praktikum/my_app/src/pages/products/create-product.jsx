@@ -21,7 +21,7 @@ export default function CreateProduct1() {
   const [productName, setProductName] = useState("");
   const [productCategory, setProductCategory] = useState("");
   const [productDescription, setProductDescription] = useState("");
-  const [productImage, setProductImage] = useState("");
+  const [productImage, setProductImage] = useState(null);
   const [productFreshness, setProductFreshness] = useState("");
   const [productPrice, setProductPrice] = useState(0);
 
@@ -265,13 +265,14 @@ export default function CreateProduct1() {
     event.preventDefault();
     if (isEdit) {
     } else if (validateForm()) {
+      console.log(productImage);
       const product = {
         id: products.length + 1,
         productName: productName,
         productCategory: productCategory,
         productPrice: productPrice,
         productDescription: productDescription,
-        productImage: "Gambar Tersimpan",
+        productImage: productImage,
         productFreshness: productFreshness,
       };
       const dupeProducts = [...products, product];
@@ -344,7 +345,7 @@ export default function CreateProduct1() {
             label="Image Product"
             type="file"
             value={productImage}
-            onChange={(event) => setProductImage(event.target.value)}
+            onChange={(event) => console.log(event.target.valueq)}
             errorMessage={errorProductImage}
           />
           <Radio

@@ -80,6 +80,8 @@ function File(props) {
     <div className="flex flex-col mb-3">
       <label>{label}</label>
       <input
+        name={name}
+        register={register}
         type="file"
         className="file-input file-input-bordered file-input-primary w-full max-w-xs h-full"
         value={value}
@@ -100,6 +102,7 @@ function Radio(props) {
     name,
     selectedValue,
     errorMessage,
+    register,
   } = props;
 
   return (
@@ -114,8 +117,9 @@ function Radio(props) {
               name={name}
               className="radio me-3 checked:bg-primary"
               value={label}
-              checked={selectedValue === label}
               onChange={onChange}
+              register={register}
+              {...(register ? register(name) : {})}
             />
             {label}
           </label>
@@ -157,7 +161,7 @@ function Select(props) {
 }
 
 function TextArea(props) {
-  const { label, value, onChange } = props;
+  const { label, value, onChange, name, register } = props;
   return (
     <div className="flex flex-col mb-3 w-auto">
       <label>{label}</label>
@@ -165,6 +169,9 @@ function TextArea(props) {
         value={value}
         onChange={onChange}
         rows={3}
+        name={name}
+        register={register}
+        {...(register ? register(name) : {})}
         className="textarea textarea-bordered"
       />
     </div>

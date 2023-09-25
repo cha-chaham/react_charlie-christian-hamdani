@@ -2,11 +2,9 @@ import React, { Component, useState, useEffect } from "react";
 import "@/styles/App.css";
 import Swal from "@/utils/swal";
 import withReactContent from "sweetalert2-react-content";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import os from "node:os";
-import randomPath from "random-path";
 
 import Layout from "@/components/layout";
 import {
@@ -22,7 +20,15 @@ import Button from "@/components/button";
 import Table from "@/components/table";
 import { ArticleTitle, ArticleDescription } from "@/components/article";
 
-const validCategories = ["Fruits", "Vegetables", "Dairy"];
+const VALID_PRODUCT_CATEGORIES = ["Fruits", "Vegetables", "Dairy"];
+const MAX_FILE_SIZE = 500000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
+const VALID_PRODUCT_FRESHNESS = ["Brand New", "Second Hand", "Refurbished"];
 
 const schema = z.object({
   productName: z
@@ -31,26 +37,39 @@ const schema = z.object({
     .max(25, { message: "Product Name must not exceed 25 characters" }),
   productCategory: z
     .string()
-    .refine((value) => validCategories.includes(value), {
+    .refine((value) => VALID_PRODUCT_CATEGORIES.includes(value), {
       message: "Must Choose A Valid Category",
     })
     .refine((value) => value !== "" && value !== "Choose...", {
       message: "Product Category is required",
     }),
   productPrice: z
-    .number()
+    .number({
+      required_error: "Product Price Required",
+      invalid_type_error: "Product Price Required",
+    })
     .min(1, { message: "Product Price Must Be Greater Than 0" }),
+  productImage: z
+    .any()
+    .refine((files) => files?.length == 1, "Image is required.")
+    .refine(
+      (files) => files?.[0]?.size <= MAX_FILE_SIZE,
+      `Max file size is 5MB.`
+    )
+    .refine(
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+      ".jpg, .jpeg, .png and .webp files are accepted."
+    ),
+  productFreshness: z
+    .string({ invalid_type_error: "Please Choose The Product Freshness" })
+    .refine((value) =>
+      VALID_PRODUCT_FRESHNESS.map((valid) => valid).includes(value)
+    ),
+  productDescription: z.string(),
 });
 
 // Functional component biasa disebut sebagai stateless component
 export default function CreateProduct1() {
-  const [productName, setProductName] = useState("");
-  const [productCategory, setProductCategory] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productImage, setProductImage] = useState("");
-  const [productFreshness, setProductFreshness] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-
   const [isEdit, setIsEdit] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
     id: null,
@@ -67,9 +86,6 @@ export default function CreateProduct1() {
   const [language, setLanguage] = useState("en");
 
   const [products, setProducts] = useState([]);
-
-  const [errorProductImage, setErrorProductImage] = useState("");
-  const [errorProductFreshness, setErrorProductFreshness] = useState("");
 
   let isValid = false;
 
@@ -94,24 +110,20 @@ export default function CreateProduct1() {
   }
 
   function deleteProduct(id) {
-    const mySwal = withReactContent(Swal);
-
-    mySwal
-      .fire({
-        title: "Konfirmasi",
-        text: `Anda yakin ingin menghapus produk ini?`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Ya, Benar",
-        cancelButtonText: "Batal",
-      })
-      .then((result) => {
-        if (result.isConfirmed) {
-          performDelete(id);
-        }
-      });
+    Swal.fire({
+      title: "Konfirmasi",
+      text: `Anda yakin ingin menghapus produk ini?`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, Benar",
+      cancelButtonText: "Batal",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        performDelete(id);
+      }
+    });
   }
 
   function performDelete(id) {
@@ -130,39 +142,6 @@ export default function CreateProduct1() {
     });
   }
 
-  function validateProductFreshness(productFreshness) {
-    if (productFreshness != "") {
-      setErrorProductFreshness("");
-      return true;
-    } else {
-      setErrorProductFreshness("Pilih keadaan produk.");
-      return false;
-    }
-  }
-  function validateProductImage(productImage) {
-    if (productImage != "") {
-      setErrorProductImage("");
-      return true;
-    } else {
-      setErrorProductImage("Pilih gambar produk.");
-      return false;
-    }
-  }
-
-  function validateForm() {
-    let isValid = true;
-
-    if (!validateProductImage(productImage)) {
-      isValid = false;
-    }
-
-    if (!validateProductFreshness(productFreshness)) {
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
   function randomGenerator() {
     console.log("Random Number : ", Math.floor(Math.random() * 101));
   }
@@ -174,93 +153,73 @@ export default function CreateProduct1() {
 
   function handleProduct(data) {
     if (isEdit) {
-      setValue("productName", data.productName);
       const updatedEditedProductData = {
         ...editedProductData,
         productName: data.productName,
         productCategory: data.productCategory,
-        productDescription,
-        productImage,
-        productFreshness,
+        productDescription: data.productDescription,
+        productImage: data.productImage[0].name,
+        productFreshness: data.productFreshness,
         productPrice: data.productPrice,
       };
-      if (validateForm()) {
-        const updatedProducts = products.map((product) =>
-          product.id === updatedEditedProductData.id
-            ? updatedEditedProductData
-            : product
-        );
 
-        setProducts(updatedProducts);
-        localStorage.setItem("products", JSON.stringify(updatedProducts));
-        setIsEdit(false);
+      const updatedProducts = products.map((product) =>
+        product.id === updatedEditedProductData.id
+          ? updatedEditedProductData
+          : product
+      );
 
-        setProductFreshness("");
-        setProductImage("");
-        setProductName("");
-        setProductCategory("Choose...");
-        setProductPrice(0);
-        setProductDescription("");
+      setProducts(updatedProducts);
+      localStorage.setItem("products", JSON.stringify(updatedProducts));
+      setIsEdit(false);
 
-        const mySwal = withReactContent(Swal);
+      resetField("productName");
+      setValue("productCategory", "Choose...");
+      resetField("productImage");
+      resetField("productFreshness");
+      resetField("productDescription");
+      resetField("productPrice");
 
-        mySwal.fire({
-          title: "Sukses",
-          text: `Sukses Mengubah Data!`,
-          icon: "success",
-        });
-
-        console.log("productName:", productName);
-        console.log("productCategory:", productCategory);
-        console.log("productDescription:", productDescription);
-        console.log("productImage:", productImage);
-        console.log("productFreshness:", productFreshness);
-        console.log("productPrice:", productPrice);
-      } else {
-        Swal.fire({
-          title: "Inputan Belum Terisi Semua",
-          text: "Periksa kembali setiap inputan anda",
-          icon: "warning",
-          showCancelButton: false,
-        });
-      }
-    } else if (validateForm()) {
+      Swal.fire({
+        title: "Sukses",
+        text: `Sukses Mengubah Data!`,
+        icon: "success",
+      });
+    } else {
       const product = {
         id: products.length + 1,
         productName: data.productName,
         productCategory: data.productCategory,
         productPrice: data.productPrice,
-        productDescription: productDescription,
-        productImage: productImage,
-        productFreshness: productFreshness,
+        productDescription: data.productDescription,
+        productImage: data.productImage[0].name,
+        productFreshness: data.productFreshness,
       };
       const dupeProducts = [...products, product];
 
       setProducts(dupeProducts);
       localStorage.setItem("products", JSON.stringify(dupeProducts));
 
-      setProductFreshness("");
-      setProductImage("");
-      setProductName("");
-      setProductCategory("Choose...");
-      setProductPrice(0);
-      setProductDescription("");
-    } else {
-      const mySwal = withReactContent(Swal);
+      resetField("productName");
+      setValue("productCategory", "Choose...");
+      resetField("productImage");
+      resetField("productFreshness");
+      resetField("productDescription");
+      resetField("productPrice");
+
       Swal.fire({
-        title: "Error",
-        text: "Periksa Kembali Inputan Anda!!!",
-        icon: "error",
-        showCancelButton: false,
+        title: "Sukses",
+        text: `Sukses Menambahkan Data!`,
+        icon: "success",
       });
-      validateProductFreshness(productFreshness);
-      validateProductImage(productImage);
     }
   }
 
   const {
     register,
     handleSubmit,
+    setValue,
+    resetField,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
@@ -296,36 +255,34 @@ export default function CreateProduct1() {
             register={register}
             label="Product Name"
             type="text"
-            defaultValue={isEdit ? editedProductData.productName : ""}
             errorMessage={errors.productName?.message}
           />
           <Select
             name="productCategory"
             register={register}
             label="Product Category"
-            options={validCategories}
+            options={VALID_PRODUCT_CATEGORIES}
             errorMessage={errors.productCategory?.message}
           />
           <File
             label="Image Product"
             type="file"
-            value={productImage}
-            onChange={(event) => setProductImage(event.target.value)}
-            errorMessage={errorProductImage}
+            name="productImage"
+            register={register}
+            errorMessage={errors.productImage?.message}
           />
           <Radio
             header="Product Freshness"
-            labels={["Brand new", "Second Hand", "Refurbished"]}
-            onChange={(event) => setProductFreshness(event.target.value)}
+            labels={VALID_PRODUCT_FRESHNESS}
             name="productFreshness"
-            selectedValue={productFreshness}
-            errorMessage={errorProductFreshness}
+            errorMessage={errors.productFreshness?.message}
+            register={register}
           />
 
           <TextArea
             label="Product Description"
-            value={productDescription}
-            onChange={(event) => setProductDescription(event.target.value)}
+            name="productDescription"
+            register={register}
           />
 
           <Number
@@ -360,11 +317,11 @@ export default function CreateProduct1() {
             setIsEdit(true);
             setEditedProductData(data);
             setEditedProductId(data.id);
-            setProductName(data.productName);
-            setProductCategory(data.productCategory);
-            setProductDescription(data.productDescription);
-            setProductFreshness(data.productFreshness);
-            setProductPrice(data.productPrice);
+            setValue("productName", data.productName);
+            setValue("productCategory", data.productCategory);
+            setValue("productPrice", data.productPrice);
+            setValue("productDescription", data.productDescription);
+            setValue("productFreshness", data.productFreshness);
           }}
         />
       </div>
