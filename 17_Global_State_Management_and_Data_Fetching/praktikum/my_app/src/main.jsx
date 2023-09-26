@@ -1,0 +1,17 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "@/routes";
+import "./styles/index.css";
+import { TokenProvider } from "./utils/state/contexts/token-context";
+import { Provider } from "react-redux";
+import store from "./utils/state/redux/store/store";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <TokenProvider>
+        <App />
+      </TokenProvider>
+    </Provider>
+  </React.StrictMode>
+);
