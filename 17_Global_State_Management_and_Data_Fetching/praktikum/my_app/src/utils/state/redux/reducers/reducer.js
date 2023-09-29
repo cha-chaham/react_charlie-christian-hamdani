@@ -33,12 +33,12 @@ const sliceState = createSlice({
   initialState: initialState,
   reducers: {
     setProducts: (state, action) => {
-      console.log(action.payload);
       state.products = action.payload;
       localStorage.setItem("products", JSON.stringify(action.payload));
     },
     editProducts: (state, action) => {
-      const updatedProducts = state.products.map((product) =>
+      const products = getItems();
+      const updatedProducts = products.map((product) =>
         product.id === action.payload.id ? action.payload : product
       );
       state.products = updatedProducts;

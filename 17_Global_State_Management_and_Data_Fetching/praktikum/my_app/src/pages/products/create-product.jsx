@@ -60,11 +60,11 @@ const schema = z.object({
     .refine((files) => files?.length == 1, "Image is required.")
     .refine(
       (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-      `Max file size is 5MB.`
+      `Max image size is 5MB.`
     )
     .refine(
       (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-      ".jpg, .jpeg, .png and .webp files are accepted."
+      "Only .jpg, .jpeg, .png and .webp files are accepted."
     ),
   productFreshness: z
     .string({ invalid_type_error: "Please Choose The Product Freshness" })
@@ -138,7 +138,7 @@ export default function CreateProduct1() {
   function handleProduct(data) {
     if (isEdit) {
       const updatedEditedProductData = {
-        ...editedProductData,
+        id: editedProductId,
         productName: data.productName,
         productCategory: data.productCategory,
         productDescription: data.productDescription,
@@ -289,7 +289,6 @@ export default function CreateProduct1() {
           datas={products}
           deleteProduct={deleteProduct}
           editProduct={(data) => {
-            console.log(data);
             setIsEdit(true);
             setEditedProductId(data.id);
             setValue("productName", data.productName);
