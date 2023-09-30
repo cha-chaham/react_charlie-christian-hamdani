@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import * as z from "zod";
 
-import { Input, Radio, Select, TextArea } from "@/components/input";
+import { Input, RadioGroup, Select, TextArea } from "@/components/input";
 import Layout from "@/components/layout";
 import Button from "@/components/button";
 import Table from "@/components/table";
@@ -78,6 +78,7 @@ export default function Index() {
   function onSubmit(data) {
     const newData = { id: uuidv4(), ...data };
     const dupeArr = [...products, newData];
+    console.log(dupeArr);
     setProducts(dupeArr);
     reset();
   }
@@ -142,7 +143,7 @@ export default function Index() {
           register={register}
           error={errors.image?.message}
         />
-        <Radio
+        <RadioGroup
           id="input-product-freshness"
           aria-label="input-product-freshness"
           label="Product Freshness"
@@ -177,6 +178,7 @@ export default function Index() {
         />
       </form>
       <Table
+        aria-label="table-data"
         datas={products}
         isReady={true}
         headers={[

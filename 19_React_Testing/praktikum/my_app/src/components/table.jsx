@@ -2,14 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Table(props) {
-  const { headers = [], datas = [], deleteProduct, editProduct } = props;
+  const { headers = [], datas = [], onDeleteClick, onEditClick } = props;
   const navigate = useNavigate();
 
   return (
-    <table className="table">
+    <table className="table" aria-label={props["aria-label"]}>
       <tr>
         {headers.map((header, index) => (
-          <th key={index} className="border-b">
+          <th key={index} className="border-b" aria-label={header}>
             {header}
           </th>
         ))}
@@ -26,17 +26,17 @@ export default function Table(props) {
           <td>{data.productCategory}</td>
           <td>{data.productImage}</td>
           <td>{data.productFreshness}</td>
+          <td>{data.additionalDescription}</td>
           <td>{data.productPrice}</td>
-          <td>{data.productDescription}</td>
           <td className="text-center">
             <button
-              onClick={() => editProduct(data)}
+              onClick={onEditClick ? () => onEditClick(data) : null}
               className="bg-orange-500 text-white me-2 mb-1 px-3 py-2 rounded-md hover:bg-orange-600 hover:ease-in transition"
             >
               Edit
             </button>
             <button
-              onClick={() => deleteProduct(data.id)}
+              onClick={onDeleteClick ? () => onDeleteClick(data) : null}
               className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 hover:ease-in transition"
             >
               Delete

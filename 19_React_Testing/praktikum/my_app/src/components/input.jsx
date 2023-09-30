@@ -1,44 +1,123 @@
-import React from "react";
-/**
- *
- * @param {{
- * label: string,
- * onChange: Function,
- * type: string,
- * placeholder: string,
- * value: string,
- * defaultValue: string
- * register: Function,
- * name: string,
- * error: string
- * }} props Props for the component
- */
+import clsx from "clsx";
+
 function Input(props) {
-  const {
-    label,
-    onChange,
-    type,
-    placeholder,
-    value,
-    defaultValue,
-    errorMessage,
-    register,
-    name,
-  } = props;
+  const { label, id, error, register, name } = props;
 
   return (
-    <div className="flex flex-col mb-3">
-      <label>{label}</label>
+    <div className="flex flex-col mb-4">
+      <label className="text-black tracking-wider mb-3" htmlFor={id}>
+        {label}
+      </label>
       <input
-        className="input input-bordered w-full max-w-md h-[2.5rem]"
-        defaultValue={defaultValue}
-        onChange={onChange}
-        value={value}
-        type={type}
-        placeholder={placeholder}
+        className={clsx(
+          "border rounded-lg bg-slate-200 border-red-500 text-black p-2 focus:outline-none focus:border-slate-200 focus:ring-1 focus:ring-slate-200 w-full",
+          !error && "border-slate-200"
+        )}
         {...(register ? register(name) : {})}
+        {...props}
       />
-      <p className="text-red-500 p-0">{errorMessage}</p>
+      {error && (
+        <label className="label">
+          <span className="break-words text-sm font-light text-red-500">
+            {error}
+          </span>
+        </label>
+      )}
+    </div>
+  );
+}
+
+function TextArea(props) {
+  const { label, id, error, register, name } = props;
+
+  return (
+    <div className="flex flex-col mb-4">
+      <label className="text-black tracking-wider mb-3" htmlFor={id}>
+        {label}
+      </label>
+      <textarea
+        className={clsx(
+          "border rounded-lg bg-slate-200 border-red-500 text-black p-2 focus:outline-none focus:border-slate-200 focus:ring-1 focus:ring-slate-200 w-full",
+          !error && "border-slate-200"
+        )}
+        {...(register ? register(name) : {})}
+        {...props}
+      />
+      {error && (
+        <label className="label">
+          <span className="break-words text-sm font-light text-red-500">
+            {error}
+          </span>
+        </label>
+      )}
+    </div>
+  );
+}
+
+function Select(props) {
+  const { label, placeholder, id, error, options, register, name } = props;
+
+  return (
+    <div className="flex flex-col mb-4">
+      <label className="text-black tracking-wider mb-3" htmlFor={id}>
+        {label}
+      </label>
+      <select
+        className={clsx(
+          "border rounded-lg bg-slate-200 border-red-500 text-black p-2 focus:outline-none focus:border-slate-200 focus:ring-1 focus:ring-slate-200 w-full",
+          !error && "border-slate-200"
+        )}
+        defaultValue=""
+        {...(register ? register(name) : {})}
+        {...props}
+      >
+        <option disabled value="">
+          {placeholder}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      {error && (
+        <label className="label">
+          <span className="break-words text-sm font-light text-red-500">
+            {error}
+          </span>
+        </label>
+      )}
+    </div>
+  );
+}
+
+function RadioGroup(props) {
+  const { label, error, options, register, name } = props;
+
+  return (
+    <div className="flex flex-col mb-4" aria-label={props["aria-label"]}>
+      <label className="text-black tracking-wider mb-3">{label}</label>
+      {options.map((option) => (
+        <div key={option.id} className="flex gap-3">
+          <input
+            type="radio"
+            value={option.label}
+            id={option.id}
+            aria-label={option.label}
+            {...(register ? register(name) : {})}
+          />
+          <label className="text-black tracking-wider" htmlFor={option.id}>
+            {option.label}
+          </label>
+        </div>
+      ))}
+      {error && (
+        <label className="label">
+          <span className="break-words text-sm font-light text-red-500">
+            {error}
+          </span>
+        </label>
+      )}
     </div>
   );
 }
@@ -83,7 +162,7 @@ function File(props) {
         name={name}
         register={register}
         type="file"
-        className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+        className="file-input file-input-bordered file-input-primary w-full max-w-xs h-full"
         value={value}
         onChange={onChange}
         accept="image/*"
@@ -130,54 +209,6 @@ function Radio(props) {
   );
 }
 
-function Select(props) {
-  const {
-    name,
-    register,
-    label,
-    errorMessage,
-    value,
-    onChange,
-    options = [],
-  } = props;
-
-  return (
-    <div className="flex flex-col mb-3">
-      <label>{label}</label>
-      <select
-        className="select select-bordered w-full max-w-xs h-[0.6rem] "
-        onChange={onChange}
-        value={value}
-        {...(register ? register(name) : {})}
-      >
-        <option>Choose...</option>
-        {options.map((option) => (
-          <option key={option}>{option}</option>
-        ))}
-      </select>
-      <p className="text-red-500 p-0">{errorMessage}</p>
-    </div>
-  );
-}
-
-function TextArea(props) {
-  const { label, value, onChange, name, register } = props;
-  return (
-    <div className="flex flex-col mb-3 w-auto">
-      <label>{label}</label>
-      <textarea
-        value={value}
-        onChange={onChange}
-        rows={3}
-        name={name}
-        register={register}
-        {...(register ? register(name) : {})}
-        className="textarea textarea-bordered"
-      />
-    </div>
-  );
-}
-
 function Toggle(props) {
   const { onChange } = props;
 
@@ -198,5 +229,4 @@ function Toggle(props) {
   );
 }
 
-export { Input, Select, TextArea, File, Radio, Toggle, Number }; // named export
-// export default Input // export default)
+export { Input, TextArea, Select, RadioGroup, Number, File, Radio, Toggle };
