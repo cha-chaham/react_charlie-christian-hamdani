@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSelector, useDispatch } from "react-redux";
 
 import Layout from "@/components/layout";
 import {
@@ -19,6 +20,11 @@ import {
 import Button from "@/components/button";
 import Table from "@/components/table";
 import { ArticleTitle, ArticleDescription } from "@/components/article";
+import {
+  setProducts,
+  deleteProducts,
+  editProducts,
+} from "@/utils/state/redux/reducers/reducer";
 
 const VALID_PRODUCT_CATEGORIES = ["Fruits", "Vegetables", "Dairy"];
 const MAX_FILE_SIZE = 500000;
@@ -54,11 +60,11 @@ const schema = z.object({
     .refine((files) => files?.length == 1, "Image is required.")
     .refine(
       (files) => files?.[0]?.size <= MAX_FILE_SIZE,
-      `Max file size is 5MB.`
+      `Max image size is 5MB.`
     )
     .refine(
       (files) => ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
-      ".jpg, .jpeg, .png and .webp files are accepted."
+      "Only .jpg, .jpeg, .png and .webp files are accepted."
     ),
   productFreshness: z
     .string({ invalid_type_error: "Please Choose The Product Freshness" })
@@ -70,6 +76,9 @@ const schema = z.object({
 
 // Functional component biasa disebut sebagai stateless component
 export default function CreateProduct1() {
+  const { products } = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+
   const [isEdit, setIsEdit] = useState(false);
   const [editedProduct, setEditedProduct] = useState({
     id: null,
@@ -85,29 +94,7 @@ export default function CreateProduct1() {
 
   const [language, setLanguage] = useState("en");
 
-  const [products, setProducts] = useState([]);
-
   let isValid = false;
-
-  useEffect(() => {
-    const getItem = localStorage.getItem("products");
-
-    // Jika belum ada item maka localstorage telah ada item products kosong
-    if (!getItem) {
-      localStorage.setItem("products", JSON.stringify([]));
-    }
-
-    setProducts(getProducts());
-  }, []);
-
-  function getProducts() {
-    const getItem = localStorage.getItem("products");
-
-    if (getItem) {
-      const parseProducts = JSON.parse(getItem);
-      return parseProducts;
-    }
-  }
 
   function deleteProduct(id) {
     Swal.fire({
@@ -127,10 +114,7 @@ export default function CreateProduct1() {
   }
 
   function performDelete(id) {
-    const updatedProducts = products.filter((product) => product.id !== id);
-    setProducts(updatedProducts);
-
-    localStorage.setItem("products", JSON.stringify(updatedProducts));
+    dispatch(deleteProducts(id));
 
     // Menampilkan pesan SweetAlert setelah berhasil menghapus produk
     const mySwal = withReactContent(Swal);
@@ -154,7 +138,7 @@ export default function CreateProduct1() {
   function handleProduct(data) {
     if (isEdit) {
       const updatedEditedProductData = {
-        ...editedProductData,
+        id: editedProductId,
         productName: data.productName,
         productCategory: data.productCategory,
         productDescription: data.productDescription,
@@ -163,14 +147,7 @@ export default function CreateProduct1() {
         productPrice: data.productPrice,
       };
 
-      const updatedProducts = products.map((product) =>
-        product.id === updatedEditedProductData.id
-          ? updatedEditedProductData
-          : product
-      );
-
-      setProducts(updatedProducts);
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
+      dispatch(editProducts(updatedEditedProductData));
       setIsEdit(false);
 
       resetField("productName");
@@ -197,8 +174,7 @@ export default function CreateProduct1() {
       };
       const dupeProducts = [...products, product];
 
-      setProducts(dupeProducts);
-      localStorage.setItem("products", JSON.stringify(dupeProducts));
+      dispatch(setProducts(dupeProducts));
 
       resetField("productName");
       setValue("productCategory", "Choose...");
@@ -216,7 +192,6 @@ export default function CreateProduct1() {
   }
 
   const {
-    reset,
     register,
     handleSubmit,
     setValue,
@@ -314,9 +289,7 @@ export default function CreateProduct1() {
           datas={products}
           deleteProduct={deleteProduct}
           editProduct={(data) => {
-            console.log(data);
             setIsEdit(true);
-            setEditedProductData(data);
             setEditedProductId(data.id);
             setValue("productName", data.productName);
             setValue("productCategory", data.productCategory);
