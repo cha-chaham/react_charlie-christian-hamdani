@@ -4,10 +4,17 @@ import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import * as z from "zod";
 
-import { Input, RadioGroup, Select, TextArea } from "@/components/input";
+import {
+  Input,
+  RadioGroup,
+  Select,
+  TextArea,
+  Toggle,
+} from "@/components/input";
 import Layout from "@/components/layout";
 import Button from "@/components/button";
 import Table from "@/components/table";
+import { ArticleTitle, ArticleDescription } from "@/components/article";
 
 const MAX_FILE_SIZE = 500000;
 const ACCEPTED_IMAGE_TYPES = [
@@ -112,6 +119,17 @@ export default function Index() {
 
   return (
     <Layout>
+      <div className="container px-5 mt-10 text-center flex flex-col align-center md:px-[3rem] lg:px-[9rem]">
+        <div className="h-[4rem] mb-4 flex justify-center md:mb-2 md:h-[4rem] lg:mb-4 lg:h-[4.5rem]">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png"
+            alt=""
+            className="h-full"
+          />
+        </div>
+        <ArticleTitle language="en" />
+        <ArticleDescription language="en" />
+      </div>
       <form
         onSubmit={handleSubmit(selectedId == "" ? onSubmit : onSubmitEdit)}
         aria-label="product-form"
