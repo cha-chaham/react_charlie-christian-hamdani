@@ -13,7 +13,7 @@ export default function Layout({ children }) {
           <a className="navbar-brand text-white fw-bold" href="#">
             <img
               src="src/assets/images/HSI-logo.png"
-              alt="Bootstrap"
+              alt="HSI Logo"
               width={60}
             />
           </a>
