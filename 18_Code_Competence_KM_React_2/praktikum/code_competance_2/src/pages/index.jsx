@@ -159,11 +159,7 @@ export default function Index() {
         <div className="" id="footer">
           <div className="row p-4">
             <div className="col-xs-12 col-md-12 col-lg-6 mb-3">
-              <img
-                src="src/assets/images/HSI-logo.png"
-                alt=""
-                id="footerLogo"
-              />
+              <img src="HSI-logo.png" alt="" id="footerLogo" />
               <h5 className="text-white fw-medium m-0">
                 Harmoni Suara Indonesia
               </h5>
