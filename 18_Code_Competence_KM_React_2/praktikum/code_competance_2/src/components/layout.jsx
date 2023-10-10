@@ -11,11 +11,7 @@ export default function Layout({ children }) {
       >
         <div className="container-fluid">
           <a className="navbar-brand text-white fw-bold" href="#">
-            <img
-              src="src/assets/images/HSI-logo.png"
-              alt="HSI Logo"
-              width={60}
-            />
+            <img src="/HSI-logo.png" alt="HSI Logo" width={60} />
           </a>
           <button
             className="navbar-toggler"
