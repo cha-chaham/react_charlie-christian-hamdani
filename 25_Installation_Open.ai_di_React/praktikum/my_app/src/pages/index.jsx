@@ -9,6 +9,7 @@ import { Input, TextArea } from "../components/input"; // named import
 import { LoadingSpinner } from "../components/loading";
 import "@/assets/css/landingPage.css";
 import Swal from "@/utils/swal";
+import imageLandingPage from "@/assets/images/lp-img.png";
 
 export default function Index() {
   const [datas, setDatas] = useState([]);
@@ -61,7 +62,7 @@ export default function Index() {
           </div>
         </div>
         <div className="hero-image">
-          <img src="src/assets/images/lp-img.png" alt="landing image" />
+          <img src={imageLandingPage} alt="landing image" />
         </div>
       </div>
       <div className="content w-full">
