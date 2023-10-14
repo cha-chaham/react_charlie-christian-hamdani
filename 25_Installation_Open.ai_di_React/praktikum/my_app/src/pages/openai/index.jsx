@@ -11,7 +11,7 @@ import Swal from "@/utils/swal";
 import { RiOpenaiFill, RiUser3Fill } from "react-icons/ri";
 import { IconContext } from "react-icons";
 
-const APIkey = "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";
+const APIkey = import.meta.env.VITE_OPENAI_API_KEY;
 const openai = new OpenAI({
   apiKey: APIkey,
   dangerouslyAllowBrowser: true,
